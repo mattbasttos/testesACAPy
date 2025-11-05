@@ -15,9 +15,9 @@ Este tutorial guia você pela simulação de um marketplace seguro usando três 
 
 1.  **Terminais Ativos:**
       * `von-network` (ou outra rede ledger)
-      * `issuer/run_issuer.py`
-      * `holder/run_holder.py`
-      * `verifier/run_verifier.py`
+      * `issuer/run-issuer.py`
+      * `holder/run-holder.py`
+      * `verifier/run-verifier.py`
 2.  **Abas do Navegador Abertas:**
       * **Issuer:** `http://localhost:8001/api/doc`
       * **Holder:** `http://localhost:8011/api/doc`
