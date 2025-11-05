@@ -1,0 +1,39 @@
+Schema 1: 
+{
+  "schema": {
+    "issuerId": "Th7MpTaRZVRYnPiabds81Y",
+    "name": "selo-vendedor",
+    "version": "1.0",
+    "attrNames": ["nome_vendedor", "nivel", "data_verificacao"]
+  }
+}
+
+Schema 2:
+{
+  "schema": {
+    "issuerId": "[SEU_ISSUER_ID]",
+    "name": "anuncio-produto",
+    "version": "1.0",
+    "attrNames": ["produto", "preco", "condicao", "id_anuncio"]
+  }
+}
+
+Credencial 1:
+{
+  "credential_definition": {
+    "issuerId": "Th7MpTaRZVRYnPiabds81Y",
+    "schemaId": "Th7MpTaRZVRYnPiabds81Y:2:selo-vendedor:1.0",
+    "tag": "selo",
+    "support_revocation": false
+  }
+}
+
+Credencial 2:
+{
+  "credential_definition": {
+    "issuerId": "Th7MpTaRZVRYnPiabds81Y",
+    "schemaId": "Th7MpTaRZVRYnPiabds81Y:2:anuncio-produto:1.0",
+    "tag": "produto",
+    "support_revocation": false
+  }
+}

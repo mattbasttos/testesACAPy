@@ -1,0 +1,11 @@
+Para o Issuer (Emissor):
+
+Acesse: http://localhost:8001/api/doc
+
+Para o Holder (Portador):
+
+Acesse: http://localhost:8011/api/doc
+
+Para o Verifier (Verificador):
+
+Acesse: http://localhost:8021/api/doc
