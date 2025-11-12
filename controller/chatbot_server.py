@@ -32,13 +32,9 @@ app = FastAPI(lifespan=lifespan)
 class ChatMessage(BaseModel):
     message: str
 
-# --- O Roteador de Funções ---
+#  Funções 
 @app.post("/chat")
 async def chat_endpoint(chat_message: ChatMessage):
-    """
-    Recebe a mensagem do usuário, obtém a função do Ollama,
-    e a executa no controlador ACA-Py.
-    """
     
     # 1. Obter a chamada de função do Ollama
     try:

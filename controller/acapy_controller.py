@@ -2,12 +2,12 @@ import aiohttp
 import logging
 from typing import Dict, Any
 
-# --- URLs dos Agentes (Constantes) ---
+#  URLs dos Agentes (Constantes) 
 ISSUER_ADMIN = "http://localhost:8001"
 HOLDER_ADMIN = "http://localhost:8011"
 VERIFIER_ADMIN = "http://localhost:8021"
 
-# --- Estado do Sistema (Simples) ---
+# Estado do Sistema (Simples) 
 # Em um sistema real, isso seria um banco de dados.
 # Vamos armazenar os IDs que geramos aqui.
 STATE = {
@@ -20,7 +20,7 @@ STATE = {
     "conn_id_verifier_holder": None,
 }
 
-# --- Funções Auxiliares de API ---
+#  Funções Auxiliares de API 
 async def admin_request(session, method, url, json_data=None, params=None):
     """Função auxiliar para fazer chamadas de API genéricas."""
     try:
