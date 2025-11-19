@@ -1,10 +1,11 @@
 import requests
 import json
 import logging
-from typing import Dict, Any  # <-- A CORREÇÃO ESTÁ AQUI
+from typing import Dict, Any  
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL_NAME = "llama3"
+# Mude de "llama3" para:
+MODEL_NAME = "phi3:mini"
 
 # O "MENU" DE FERRAMENTAS QUE O LLM PODE ESCOLHER
 SYSTEM_PROMPT = """

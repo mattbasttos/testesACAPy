@@ -92,7 +92,7 @@ sudo systemctl restart ollama
 
 
 
-O comando `pull` baixa um novo modelo (como o `llama3` ou `phi3:mini`) do registro do Ollama para o seu computador.
+O comando `pull` baixa um novo modelo (como o `llama3` ou `phi3:mini`) do registro do Ollama para o seu computador. Neste projeto foi utilizado o Phi3:mini.
 
 
 
@@ -170,72 +170,63 @@ Isso simplesmente confirma que o servidor principal já está no ar e ocupando a
 
 
 
-## 4\. Fluxo de Trabalho Padrão (Resumo)
+# 4\. Roteiro de Execução (Passo a Passo)
 
+Para que o sistema funcione, os componentes devem ser iniciados nesta ordem exata. Use terminais separados para cada um.
 
+### Passo A: Infraestrutura SSI
 
-Para o nosso projeto de chatbot, seu fluxo de trabalho será:
+1.  **Terminal 1 (Ledger):** Inicie a VON Network.
+2.  **Terminal 2 (Issuer):** `python issuer/run_issuer.py`
+3.  **Terminal 3 (Holder):** `python holder/run_holder.py`
+4.  *(Opcional)* **Terminal 4 (Verifier):** `python verifier/run_verifier.py`
 
+### Passo B: Servidor do Chatbot
 
+Vá para a pasta do controlador e inicie a API.
 
-1.  **Verificar se o Ollama está rodando:**
+**Terminal 5:**
 
+```bash
+cd ~/testesACAPy/controller
+source ../venv/bin/activate
+python chatbot_server.py
+```
 
+  * **Sucesso:** Você verá `Uvicorn running on http://0.0.0.0:8080`.
 
-    ```bash
+-----
 
-    sudo systemctl status ollama
+## 5\. Comandos de Teste (Demo Script)
 
-    ```
+Use um **Terminal 6** para enviar os comandos de voz (simulados via texto) para o seu bot.
 
+### 1️⃣ Configurar o Ambiente
 
+O bot deve criar Schemas e CredDefs no Issuer.
 
-    (Se não estiver, use `sudo systemctl start ollama`.)
+```bash
+curl -X POST http://localhost:8080/chat \
+     -H "Content-Type: application/json" \
+     -d '{"message": "Prepare o marketplace para mim"}'
+```
 
+### 2️⃣ Conectar Agentes
 
+O bot deve criar um convite OOB no Issuer e fazê-lo ser aceito pelo Holder.
 
-2.  **Baixar o modelo (apenas uma vez):**
+```bash
+curl -X POST http://localhost:8080/chat \
+     -H "Content-Type: application/json" \
+     -d '{"message": "Conecte o administrador com o vendedor"}'
+```
 
+### 3️⃣ Emitir Credencial (O Grande Teste)
 
+O bot deve entender os parâmetros "Nome" e "Nível" da frase e emitir a credencial.
 
-    ```bash
-
-    ollama pull phi3:mini
-
-    ```
-
-
-
-3.  **Iniciar seu aplicativo:**
-
-
-
-    ```bash
-
-    (venv) python chatbot_server.py
-
-    ```
-
-
-
-4.  **Testar com `curl`:**
-
-
-
-    ```bash
-
-    curl -X POST http://localhost:8080/chat -d '{"message": "Prepare o marketplace"}'
-
-    ```
-
-
-
-5.  **Se algo falhar (Erro 500):**
-
-
-
-    ```bash
-
-    sudo systemctl restart ollama
-
-    ```
+```bash
+curl -X POST http://localhost:8080/chat \
+     -H "Content-Type: application/json" \
+     -d '{"message": "Emita um selo nível Ouro para a loja TechStore"}'
+```
